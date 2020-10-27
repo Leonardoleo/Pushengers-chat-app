@@ -3,7 +3,14 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #fcfcfc;
+    /* background-image: url(../logo.png); */
 }
+
+/* .logo {
+    
+} */
+
+
 
 .chat-area, .home {
     margin-top: 60px;
