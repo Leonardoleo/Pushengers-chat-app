@@ -27,8 +27,8 @@ function Header() {
                 <button className="btn btn-primary mr-3" onClick={() => auth().signOut()}>Logout</button>
                 </div>
                 : <div className="navbar-nav">
-                  <Link className="btn btn-outline-success text-black px-5 mr-3 nav-item nav-link" to="/login">Sign In</Link>
-                  <Link className ="btn btn-outline-success text-black px-5 mr-3 nav-item nav-link" to="/signup">Sign Up</Link>
+                  <Link type="button" className="btn btn-primary text-white px-5 mr-3 nav-item nav-link" to="/login">Sign In</Link>
+                  <Link type="button" className ="btn btn-danger text-white px-5 mr-3 nav-item nav-link" to="/signup">Sign Up</Link>
                   </div>}
             </div>
             </nav>

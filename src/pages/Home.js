@@ -14,8 +14,8 @@ export default class HomePage extends Component {
                         <h1 className="display-4">Welcome to Pushengers</h1>
                         <p className="lead">A great place to talk with friends!</p>
                         <div className="mt-4">
-                           <Link className="btn btn-primary px-5 mr-3" to="/signup">Create New Account</Link>
-                           <Link className="btn px-5" to="/login">Login to your account</Link>
+                           <Link type="button" className="btn btn-outline-danger px-5 mr-3" to="/signup">Create New Account</Link>
+                           <Link type="button" className="btn btn-outline-primary px-5 mr-3" to="/login">Login to your account</Link>
                         </div>
                       </div>
                    </div>
