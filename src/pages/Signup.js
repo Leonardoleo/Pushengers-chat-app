@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { signup } from '../helpers/auth';
+import Footer from '../components/Footer';
+import logo from '../assets/images/logo.png';
 // signInwithGoogle, signInwithGitHub
+
 export default class Signup extends Component {
     
     constructor(props) {
@@ -51,9 +54,14 @@ export default class Signup extends Component {
     // }
     
     render() {
+
+        console.log(logo);
+        
         return (
             <div className="container">
-                <form className="mt-5 py-5 px-5" onSubmit={this.handleSubmit}>
+                <nav className="navbar navbar-light bg-light">
+                 <Link className="navbar-brand postiion-relative" href="" to="/"><img src={logo} alt="" /></Link>
+                 <form className="mt-5 py-5 px-5" onSubmit={this.handleSubmit}>
                     <h1>
                         Sign Up to 
                         <Link className="title ml-2" to="/">Pushengers</Link>
@@ -79,7 +87,10 @@ export default class Signup extends Component {
                     <hr></hr>
                     <p>Already have an account? <Link to="/login"></Link></p>
                 </form>
-            </div>
+            </nav>
+         <Footer></Footer>
+        </div>
+        
         )
     }
 }
