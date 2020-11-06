@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signin } from "../helpers/auth";
 import logo from "../assets/images/logo.png";
+import Footer from "../components/Footer";
 // signInWithGoogle, signInWithGitHub
 
 export default class Login extends Component {
@@ -82,7 +83,7 @@ export default class Login extends Component {
             </div>{" "} 
             <div className = "form-group" > { " " } { this.state.error ? ( <p className = "text-danger"> { this.state.error } </p>
             ) : null } { " " } 
-            <button className = "btn btn-primary px-5" type = "submit"> Login { " " } 
+            <button className ="btn btn-primary px-5" type = "submit"> Login { " " } 
             </button>{" "} 
             </div>{" "} {
                 /* <p>You can also login with any of these devices</p> 
@@ -95,10 +96,11 @@ export default class Login extends Component {
             } { " " } 
             <hr/>
             <p>
-            Don 't have an account? <Link to="/signup"></Link>{" "} 
+            Don't have an account? <Link className="btn btn-danger text-white px-6 mr-3" type="button" to="/signup">Sign Up</Link>{" "} 
             </p>{" "} 
             </form>{" "}
             </nav> 
+            <Footer></Footer>
             </div>
         );
     }
