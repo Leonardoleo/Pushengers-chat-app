@@ -96,7 +96,7 @@ export default class Login extends Component {
             } { " " } 
             <hr/>
             <p>
-            Don't have an account? <Link className="btn btn-danger text-white px-6 mr-3" type="button" to="/signup">Sign Up</Link>{" "} 
+            Don't have an account? <Link className="" type="" to="/signup">Sign Up</Link>{" "} 
             </p>{" "} 
             </form>{" "}
             </nav> 

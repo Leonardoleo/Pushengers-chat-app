@@ -85,7 +85,7 @@ export default class Signup extends Component {
                       Sign up with Github
                     </button> */}
                     <hr></hr>
-                    <p>Already have an account? <Link className="btn btn-primary text-white px-6 mr-3" type="button" to="/login"> Log In</Link></p>
+                    <p>Already have an account? <Link className="" type="" to="/login"> Log In</Link></p>
                 </form>
             </nav>
          <Footer></Footer>
