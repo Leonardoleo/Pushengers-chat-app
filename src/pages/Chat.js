@@ -15,7 +15,8 @@ export default class Chat extends Component {
             content: '',
             readError: null,
             writeError: null,
-            loadingChats: false
+            loadingChats: false,
+            emojiPicker: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,26 +42,36 @@ export default class Chat extends Component {
             }
       }
       
-       handleChange(event) {
+       handleChange = (event) => {
           this.setState({
-              content: event.target.value
+              [event.target.name]: event.target.value
           });
       }
 
        addEmoji = e => {
-          let sym = e.unified.split('-')
-          let codesArray = []
-          sym.forEach(el => codesArray.push('0x' + el))
-          let emoji = String.fromCodePoint(...codesArray)
+        //   let sym = e.unified.split('-')
+        //   let codesArray = []
+        //   sym.forEach(el => codesArray.push('0x' + el))
+        // String.fromCodePoint(...codesArray)
+          let emoji = e.native
           this.setState({ 
               text: this.state.text + emoji
             })}
 
-        handleSubmit = e => {
-            e.preventDefault()
-            postMessage(this.state)
-            this.setState({ text: '' })
-        }
+        // handleChange = e => {
+        //     let validation = validate(e.target.value);
+        //     //console.log(validation)
+        //     this.setState({
+        //         text: e.target.value,
+        //         errors: validation
+        //     });
+        // }
+
+        // handleSubmit = e => {
+        //     e.preventDefault();
+        //     postMessage(this.state);
+        //     this.setState({ text: ""});
+        // };
 
         async handleSubmit(event) {
           event.preventDefault();
