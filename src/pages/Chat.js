@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
 import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from 'emoji-mart';
+import { Picker, emojiIndex } from 'emoji-mart';
 
 export default class Chat extends Component {
     constructor(props) {
@@ -46,8 +46,44 @@ export default class Chat extends Component {
           this.setState({
               [event.target.name]: event.target.value
           });
+      };
+
+      handleKeyDown = (event) => {
+          if (event.KeyCode === 13) {
+              this.sendMessage();
+          }
+        }
+
+        // const { message } = this.state;
+      
+        handleTogglePicker = () => {
+          this.setState({ emojiPicker: !this.state.emojiPicker });
       }
 
+        handleAddEmoji = (emoji) => {
+          const oldMessage = this.state.message;
+          const newMessage = this.colonToUnicode(` ${oldMessage} ${emoji.colons} `);
+          this.setState({ message: newMessage, emojiPicker: false });
+          setTimeout(() => this.messageInputRef.focus(), 0);
+      };
+
+      colonToUnicode = (message) => {
+          return message.replace(/:[A-Za-z0-9_+-]+:/g, (x) => {
+            x = x.replace(/:/g, "");
+            let emoji =emojiIndex.emojis[x];
+            if (typeof emoji !== "undefined") {
+                let unicode = emoji.native;
+            if (typeof unicode !== "undefined") {
+                return unicode;
+            }
+        }
+        x = ":" + x + ":";
+        return x;
+
+          });
+      }
+          
+      
        addEmoji = e => {
         //   let sym = e.unified.split('-')
         //   let codesArray = []
@@ -97,8 +133,11 @@ export default class Chat extends Component {
       }
       
       render() {
+              
+          const { message, emojiPicker } = this.state;
           return (
               <div>
+                 
                  <Header />
                
                <div className="chat-area" ref={this.myRef}>
@@ -120,14 +159,44 @@ export default class Chat extends Component {
                     {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
                     <button type="submit" className="btn btn-submit px-5 mt-4">Send</button>
                     </form>
-                    <span>
+                    {/* <span>
                         <Picker onSelect={this.addEmoji} />
-                    </span>
+                    </span> */}
+            
+               
+          
+              <div className="message__form">
+              {emojiPicker && (
+                  <Picker 
+                   set="apple"
+                   onSelect={this.handleAddEmoji}
+                   className="emojipicker"
+                   emoji="point_up"   
+                  />
+              )}
+              <input
+                fluid
+                name="message"
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+                value={message}
+                ref={(node) => (this.messageInputRef = node)}
+                style={{ marginBottom: "0.7em"}}
+                label={
+                    <button
+                    icon={emojiPicker ? "close" : "add"}
+                    content={emojiPicker ? "Close" :null}
+                    onClick={this.handleTogglePicker}
+                    />
+                }
+              />
+                  
                   
                     <div className="py-5 mx-3">
                       Login in as: <strong className="text-info">{this.state.user.email}</strong>
                   </div>
               </div>
+            </div>
           );
       }
 }
