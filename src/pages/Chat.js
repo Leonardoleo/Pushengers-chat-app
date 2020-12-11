@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-
+import { Picker } from "emoji-mart";
+import 'emoji-mart/css/emoji-mart.css';
 
 export default class Chat extends Component {
     constructor(props) {
@@ -47,6 +48,21 @@ export default class Chat extends Component {
         });
     }
 
+    // handleChange = e => {
+    //     this.setState({ text: e.target.value })
+    // }
+
+    addEmoji = e => {
+        let sym = e.unified.split('-')
+        let codesArray = []
+        sym.forEach(el => codesArray.push('0x' + el))
+        let emoji = String.fromCodePoint(...codesArray)
+        // let emoji = e.native;
+        this.setState({
+            text: this.state.text + emoji
+        })
+    }
+
      async handleSubmit(event) {
         event.preventDefault();
         this.setState({ writeError: null });
@@ -71,6 +87,8 @@ export default class Chat extends Component {
     }/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
         return time;
     }
+
+
 
     render() {
         return ( 
@@ -111,9 +129,12 @@ export default class Chat extends Component {
                     <p className = "text-danger" > { this.state.error } </p>
                  : null
                  } 
+            <span>
+                <Picker onSelect={this.addEmoji} />
+            </span>
             <button type = "submit" className = "btn btn-submit px-5 mt-4">
             Send 
-            </button> 
+            </button>
             </form> 
            
             <div className = "py-5 mx-3">
