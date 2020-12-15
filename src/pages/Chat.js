@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-import { Picker } from "emoji-mart";
 import 'emoji-mart/css/emoji-mart.css';
-
+import { Picker } from "emoji-mart";
 export default class Chat extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +19,8 @@ export default class Chat extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.myRef = React.createRef();
     }
-
-    async componentDidMount() {
+   
+   async componentDidMount() {
         this.setState({ readError: null, loadingChats: true });
         const chatArea = this.myRef.current;
         try {
@@ -48,20 +47,7 @@ export default class Chat extends Component {
         });
     }
 
-    // handleChange = e => {
-    //     this.setState({ text: e.target.value })
-    // }
-
-    addEmoji = e => {
-        let sym = e.unified.split('-')
-        let codesArray = []
-        sym.forEach(el => codesArray.push('0x' + el))
-        let emoji = String.fromCodePoint(...codesArray)
-        // let emoji = e.native;
-        this.setState({
-            text: this.state.text + emoji
-        })
-    }
+    
 
      async handleSubmit(event) {
         event.preventDefault();
@@ -88,8 +74,13 @@ export default class Chat extends Component {
         return time;
     }
 
-
-
+    addEmoji = e => {
+        let emoji = e.native;
+        this.setState({
+            content: this.state.content + emoji
+        });
+    };
+    
     render() {
         return ( 
             <div>
@@ -118,26 +109,32 @@ export default class Chat extends Component {
                 })
             } 
             </div> 
-            
+
+             
             <form onSubmit = { this.handleSubmit } className = "mx-3">
+            
             <textarea className = "form-control"
+            type="content"
             name = "content"
             onChange = { this.handleChange } value = { this.state.content }>
             </textarea> 
+            
             {
                 this.state.error ?  
                     <p className = "text-danger" > { this.state.error } </p>
                  : null
-                 } 
+                 }
+
             <span>
                 <Picker onSelect={this.addEmoji} />
             </span>
+
             <button type = "submit" className = "btn btn-submit px-5 mt-4">
             Send 
             </button>
             </form> 
            
-            <div className = "py-5 mx-3">
+           <div className = "py-5 mx-3">
             Login in as: { " " } 
             <strong className = "text-info" > { this.state.user.email } </strong> 
             </div> 
