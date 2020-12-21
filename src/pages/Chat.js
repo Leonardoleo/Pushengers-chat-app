@@ -4,6 +4,7 @@ import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from "emoji-mart";
+import { GrAddCircle } from "react-icons/gr";
 export default class Chat extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +21,7 @@ export default class Chat extends Component {
         this.myRef = React.createRef();
     }
 
-    
-   
-   async componentDidMount() {
+    async componentDidMount() {
         this.setState({ readError: null, loadingChats: true });
         const chatArea = this.myRef.current;
         try {
@@ -122,8 +121,10 @@ export default class Chat extends Component {
             </textarea> 
 
             <span>
-                <Picker 
-                onSelect={this.addEmoji}
+                
+                <GrAddCircle />
+                <Picker
+                 onSelect={this.addEmoji}
                 />
             </span>
             
