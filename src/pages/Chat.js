@@ -4,7 +4,7 @@ import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from "emoji-mart";
-import { GrAddCircle } from "react-icons/gr";
+import { GrEmoji } from "react-icons/gr";
 export default class Chat extends Component {
     constructor(props) {
         super(props);
@@ -122,7 +122,7 @@ export default class Chat extends Component {
 
             <span>
                 
-                <GrAddCircle />
+                <GrEmoji />
                 <Picker
                  onSelect={this.addEmoji}
                 />
