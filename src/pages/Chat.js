@@ -19,6 +19,8 @@ export default class Chat extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.myRef = React.createRef();
     }
+
+    
    
    async componentDidMount() {
         this.setState({ readError: null, loadingChats: true });
@@ -118,16 +120,18 @@ export default class Chat extends Component {
             name = "content"
             onChange = { this.handleChange } value = { this.state.content }>
             </textarea> 
+
+            <span>
+                <Picker 
+                onSelect={this.addEmoji}
+                />
+            </span>
             
             {
                 this.state.error ?  
                     <p className = "text-danger" > { this.state.error } </p>
                  : null
                  }
-
-            <span>
-                <Picker onSelect={this.addEmoji} />
-            </span>
 
             <button type = "submit" className = "btn btn-submit px-5 mt-4">
             Send 
@@ -142,3 +146,4 @@ export default class Chat extends Component {
         );
     }
 }
+
