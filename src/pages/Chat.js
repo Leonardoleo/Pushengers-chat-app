@@ -121,11 +121,10 @@ export default class Chat extends Component {
             </textarea> 
 
             <span>
-                
-                <GrEmoji />
-                <Picker
-                 onSelect={this.addEmoji}
+               <Picker
+                 onClick={this.addEmoji}
                 />
+                <GrEmoji />
             </span>
             
             {
