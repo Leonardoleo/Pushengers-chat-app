@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from "emoji-mart";
-import { GrEmoji } from "react-icons/gr";
+
 export default class Chat extends Component {
     constructor(props) {
         super(props);
@@ -48,9 +46,7 @@ export default class Chat extends Component {
         });
     }
 
-    
-
-     async handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         this.setState({ writeError: null });
         const chatArea = this.myRef.current;
@@ -75,13 +71,6 @@ export default class Chat extends Component {
         return time;
     }
 
-    addEmoji = e => {
-        let emoji = e.native;
-        this.setState({
-            content: this.state.content + emoji
-        });
-    };
-    
     render() {
         return ( 
             <div>
@@ -120,14 +109,7 @@ export default class Chat extends Component {
             onChange = { this.handleChange } value = { this.state.content }>
             </textarea> 
 
-            <span>
-               <Picker
-                 onClick={this.addEmoji}
-                />
-                <GrEmoji />
-            </span>
-            
-            {
+           {
                 this.state.error ?  
                     <p className = "text-danger" > { this.state.error } </p>
                  : null
