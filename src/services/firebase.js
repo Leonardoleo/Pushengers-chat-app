@@ -6,6 +6,7 @@ const config = {
     apiKey: "AIzaSyAKpLlbMuhvwZz_gc9pyvsHGPouBaduX28",
     authDomain: "pushengers.firebaseapp.com",
     databaseURL: "https://pushengers.firebaseio.com",
+    storageBucket: "pushengers.appspot.com"
 };
 
 firebase.initializeApp(config);
